@@ -38,7 +38,7 @@ Jimmy = {
 Pepe = {
     "first name" : 'Pepe',
     "age" : 32,
-    "lucky number" : [4,5,6]
+    "lucky number" : [4, 5, 6]
 }
 
 #añadir miembros a la familia Jackson ------------------
@@ -60,9 +60,9 @@ def get_all_members():
 
 @app.route('/members', methods=['POST'])
 def add_member():
-    data = request.json
-    jackson_family.addmember(data)
-    return jsonify(data), 200
+    request_body = request.json
+    newMember = jackson_family.add_member(request_body)
+    return jsonify("Miembro añadido"), 200
 
 #eliminar miembros ----------------------------------------
 
@@ -70,7 +70,7 @@ def add_member():
 def delete_member(id):
      member = jackson_family.delete_member(id)
      if member:
-        jackson_family.delete_member(id)
+       # jackson_family.delete_member(id)
         return jsonify({"message": "Member delete"}), 200
      else:
         return jsonify({"message": "Member not found"}), 404
